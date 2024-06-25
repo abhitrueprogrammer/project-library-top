@@ -4,3 +4,39 @@ td, th{
     padding: 0.5rem;
 }
 
+table{
+    margin-bottom: 15px ;
+}
+table+button{
+    padding: 7px;
+    border-radius: 5px;
+}
+table+button:hover{
+    background-color: #e5e5e5;
+}
+table+button:active{
+    background-color: #f6f6f6;
+}
+/* Form styling */
+form{
+    display: flex;
+    flex-direction: column;
+}
+form li{
+    list-style-type: none;
+    margin-bottom: 10px;
+}
+form li:last-child{
+    display: flex;
+    justify-content: center;
+}
+form{
+    position: relative;;
+}
+dialog> button{
+    position: absolute;
+    right: 0;
+    top: 0;
+    margin-top: 10px;
+    margin-right: 10px;
+}

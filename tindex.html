@@ -3,23 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>test</title>
-    <script defer src="script.js"></script>
-    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+    <style>
+        form{
+            display: flex;
+            flex-direction: column;
+        }
+        form li{
+            list-style-type: none;
+            margin-bottom: 10px;
+        }
+        form li:last-child{
+            display: flex;
+            justify-content: center;
+        }
+        form{
+            position: relative;;
+        }
+        dialog> button{
+            position: absolute;
+            right: 0;
+            top: 0;
+            margin-top: 10px;
+            margin-right: 10px;
+        }
+    </style>
 </head>
 <body>
-    <table>
-        <tr>
-            <th>Title</th>
-            <th>Author</th>
-            <th>No. of Pages</th>
-            <th>Book Read</th>
-            <th></th> <!--Toggle read status-->
-            <th></th> <!--Delete book-->
-        </tr>
-        
-    </table>
-    <button class="open-modal">NEW BOOK</button>
+
+    <button>Open Modal</button>
     <dialog>
         <h2>Book Details:</h2>
         <form method="get">  <!-- Make post -->
@@ -38,13 +50,23 @@
                 </li>
                 <li>
                     <label for="read-status">You read it?</label>
-                    <input type="checkbox" id="read-status" >
+                    <input type="checkbox" id="read-status" required>
                 </li>
                 <li><button type="submit">Submit</button></li>
             </ul>
         </form>
         <button class="close-modal">X</button>
     </dialog>
-
+    <script>
+        let btn = document.querySelector("button")
+        let dialog = document.querySelector("dialog")
+        const closeBtn = document.querySelector(".close-modal")
+        btn.addEventListener("click", ()=>{
+            dialog.showModal()
+        })
+        closeBtn.addEventListener("click", ()=>{
+            dialog.close()
+        })
+    </script>
 </body>
 </html>

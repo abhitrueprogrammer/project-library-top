@@ -40,7 +40,7 @@ function showBook(){
     function createTDwithButton(text) {
         const tableData = document.createElement("td");
         const button = document.createElement("button");
-        button.classList.toggle("btn");
+        button.classList.toggle("td-btn");
         button.textContent = text;
         tableData.appendChild(button);
         return tableData;
@@ -51,3 +51,14 @@ showBook();
 function addBookToLibrary() {
     // do stuff here
   }
+
+
+  let btn = document.querySelector(".open-modal")
+  let dialog = document.querySelector("dialog")
+  const closeBtn = document.querySelector(".close-modal")
+  btn.addEventListener("click", ()=>{
+      dialog.showModal()
+  })
+  closeBtn.addEventListener("click", ()=>{
+      dialog.close()
+  })
