@@ -43,7 +43,7 @@ function showBook(bk) {
     const readButton = createTDwithButton("Read", bk_no);
     readButton.addEventListener("click", ()=>{
         const readInfo = document.querySelector(`tr[data-item-number="${bk_no}"] .read`);
-        if(readInfo.)
+        readInfo.textContent = readInfo.textContent === "true" ? false : true
         readInfo.textContent("changed");
     })
     tableRow.appendChild(readButton);
