@@ -1,5 +1,11 @@
-
 const myLibrary = [new Book("Harry Potter", "JK Rowling", 250, true), new Book("Animal Farm", "George Orwell", 50, true)];
+
+let book_no_global = 0; //change to static class variable or closure]
+
+function getBookNumber(){
+    return book_no_global++
+}
+
 showAllBooks();
 
 function Book(title, author, nPg, read){
@@ -24,28 +30,43 @@ function showAllBooks(){
     }
 }
 
+
 function showBook(bk) {
+    const bk_no = getBookNumber();
     const tableRow = document.createElement("tr");
     for (attribute in bk) {
         const tableData = document.createElement("td");
+        tableData.classList.toggle(attribute)
         tableData.textContent = bk[attribute];
         tableRow.appendChild(tableData);
     }
-    let tableData = createTDwithButton("Read");
-    tableRow.appendChild(tableData);
+    const readButton = createTDwithButton("Read", bk_no);
+    readButton.addEventListener("click", ()=>{
+        const readInfo = document.querySelector(`tr[data-item-number="${bk_no}"] .read`);
+        if(readInfo.)
+        readInfo.textContent("changed");
+    })
+    tableRow.appendChild(readButton);
+;
 
-    tableData = createTDwithButton("Delete");
-    tableRow.appendChild(tableData);
+    const deleteButton = createTDwithButton("Delete", bk_no);
+    
+    deleteButton.addEventListener("click", ()=>{
+        const rowToBeDeleted = document.querySelector(`tr[data-item-number="${bk_no}"]`);
+        rowToBeDeleted.remove();
+    });
+    tableRow.appendChild(deleteButton);
 
 
-
+    tableRow.setAttribute("data-item-number", bk_no)
     const table = document.querySelector('table');
     table.appendChild(tableRow);
 
-    function createTDwithButton(text) {
+    function createTDwithButton(text, bk_no) {
         const tableData = document.createElement("td");
         const button = document.createElement("button");
         button.classList.toggle("td-btn");
+        button.setAttribute("data-item-number", bk_no)
         button.textContent = text;
         tableData.appendChild(button);
         return tableData;
@@ -74,7 +95,7 @@ function addBookToLibrary(bookDetailArray) {
     for(detail of bookDetails){
        bookDetailArray.push(detail.value);
     }
-    bookDetailArray[3] = bookDetailArray[3] == 'on'? true:false;
+    bookDetailArray[3] = bookDetails[3].checked;
     addAndShowBook(bookDetailArray); /*Won't work probably*/
     dialog.close()
   });
